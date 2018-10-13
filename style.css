@@ -24,7 +24,7 @@ a{
 }
 .navTopBar > .logo .rs{
     color: #e6686a;
-    margin-right: 4px;
+    padding-right: 4px;
 }
 .navTopBar > .logo .card{
     color: #9a9da2;
