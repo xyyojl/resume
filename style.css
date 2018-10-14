@@ -87,6 +87,7 @@ hr{
     margin-left: auto;
     margin-right: auto;
     color: #000;
+    background: #fff;
 }
 .userCard .pictureAndText{
     padding: 50px;
