@@ -4,38 +4,52 @@
     <meta charset="UTF-8">
     <title>区家乐的个人简历</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="//at.alicdn.com/t/font_872104_en1bfctim57.js"></script>
+    <style type="text/css">
+        .icon {
+           width: 1em; height: 1em;
+           vertical-align: -0.15em;
+           fill: currentColor;
+           overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <!-- 写标签的时候一定不能管样式 -->
     <!-- 导航栏 navigation mdn -->
-    <div class="navTopBar clearfix">
-        <a href="#" class="logo">
-            <span class="rs">RS</span><span class="card">card</span>
-        </a>
-        <nav>
-            <ul class="clearfix">
-                <li><a href="#">关于</a></li>
-                <li><a href="#">技能</a></li>
-                <li><a href="#">作品</a></li>
-                <li><a href="#">博客</a></li>
-                <li><a href="#">日历</a></li>
-                <li><a href="#">联系方式</a></li>
-                <li><a href="#">其他</a></li>
-            </ul>
-        </nav>
+    <div class="navTopBar">
+        <div class="navTopBar-inner clearfix">
+            <a href="#" class="logo">
+                <span class="rs">RS</span><span class="card">card</span>
+            </a>
+            <nav>
+                <ul class="clearfix">
+                    <li><a href="#">关于</a></li>
+                    <li><a href="#">技能</a></li>
+                    <li><a href="#">作品</a></li>
+                    <li><a href="#">博客</a></li>
+                    <li><a href="#">日历</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">其他</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
-    <div class="banner" style="background:url(#);"></div>
+    <div class="banner">
+        <div class="mask"></div>
+    </div>
     <main>
-        <div class="card">
-            <div class="pictureAndText">
+        <div class="userCard">
+            <div class="pictureAndText clearfix">
                 <div class="picture">
-                    <img src="#" alt="头像">
+                    <!-- <img src="./img/avatar.jpg" alt="头像" width="299" height="347"> -->
+                    <!-- <img src="./img/1.jpg" alt="头像" width="960" height="1280"> -->
                 </div>
                 <div class="text">
                     <div class="profile">
-                        <span>Hello</span>
+                        <span class="welcome">Hello <span class="triangle"></span></span>
                         <h1>区家乐</h1>
-                        <p>前端工程师</p>
+                        <p>前端开发工程师</p>
                         <hr>
                         <dl>
                             <dt>年龄</dt>
@@ -51,13 +65,31 @@
                 </div>
             </div>
             <footer class="media">
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
-                <a href="#"><img src="#" alt="..."></a>
+                <a href="https://github.com/xyyojl">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                </a>
+                <a href="https://xyyojl.github.io/index.html">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-hexo"></use>
+                    </svg>
+                </a>
+                <a href="https://blog.csdn.net/xyyojl/">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                </a>
+                <a href="https://www.jianshu.com/u/71a9fc012556">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-CN_jianshu"></use>
+                    </svg>
+                </a>
+                <a href="https://www.zhihu.com/people/xyyojl/activities">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                </a>
             </footer>
         </div>
         <a href="#" class="button">下载 PDF 简历</a>
