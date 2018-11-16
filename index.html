@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>区家乐的个人简历</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_872104_en1bfctim57.js"></script>
     <style type="text/css">
         .icon {
@@ -12,12 +13,30 @@
            fill: currentColor;
            overflow: hidden;
         }
+        .site-welcome{
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index:1;
+            background: #ccc;
+            justify-content: center;
+            align-items: center;
+        }
+        .site-welcome.active{
+            display: flex;
+        }
     </style>
 </head>
 <body>
     <!-- 写标签的时候一定不能管样式 -->
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
     <!-- 导航栏 navigation mdn -->
-    <div class="navTopBar">
+    <div class="navTopBar" id="navTopBar">
         <div class="navTopBar-inner clearfix">
             <a href="#" class="logo">
                 <span class="rs">RS</span><span class="card">card</span>
@@ -26,8 +45,22 @@
                 <ul class="clearfix">
                     <li><a href="#">关于</a></li>
                     <li><a href="#">技能</a></li>
-                    <li><a href="#">作品</a></li>
-                    <li><a href="#">博客</a></li>
+                    <li class="menuTigger">
+                        <a href="#">作品</a>
+                        <ul class="submenu">
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                        </ul>
+                    </li>
+                    <li class="menuTigger">
+                        <a href="#">博客</a>
+                        <ul class="submenu">
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                        </ul>
+                    </li>
                     <li><a href="#">日历</a></li>
                     <li><a href="#">联系方式</a></li>
                     <li><a href="#">其他</a></li>
@@ -176,5 +209,31 @@
             </div>
         </div>
     </section>
+    <script>
+        setTimeout(function(){
+            siteWelcome.classList.remove('active');
+        },2000);
+        window.onscroll = function(){
+            if(window.scrollY > 0){
+                navTopBar.classList.add('sticky')
+            }else{
+                navTopBar.classList.remove('sticky')
+            }
+        }
+        let liTags = document.getElementsByClassName('menuTigger');
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function(x){
+                let li = x.currentTarget;
+                let brother = li.getElementsByTagName('ul')[0];
+                brother.classList.add('active')
+            }
+            liTags[i].onmouseleave = function(x){
+                let li = x.currentTarget;
+                let brother = li.getElementsByTagName('ul')[0];
+                brother.classList.remove('active')
+            }
+            
+        }
+    </script>
 </body>
 </html>
