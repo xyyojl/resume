@@ -41,19 +41,19 @@
             <a href="#" class="logo">
                 <span class="rs">RS</span><span class="card">card</span>
             </a>
-            <nav>
+            <nav class="menu">
                 <ul class="clearfix">
-                    <li><a href="#">关于</a></li>
-                    <li><a href="#">技能</a></li>
-                    <li class="menuTigger">
-                        <a href="#">作品</a>
+                    <li><a href="#siteAbout">关于</a></li>
+                    <li><a href="#siteSkills">技能</a></li>
+                    <li>
+                        <a href="#siteWorks">作品</a>
                         <ul class="submenu">
                             <li>作品1</li>
                             <li>作品2</li>
                             <li>作品3</li>
                         </ul>
                     </li>
-                    <li class="menuTigger">
+                    <li>
                         <a href="#">博客</a>
                         <ul class="submenu">
                             <li>博客1</li>
@@ -71,7 +71,7 @@
     <div class="banner">
         <div class="mask"></div>
     </div>
-    <main>
+    <main id="siteAbout">
         <div class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
@@ -133,7 +133,7 @@
             技能：学习过Java的基础，前端开发，Python开发
         </p>
     </main>
-    <section class="skills">
+    <section class="skills" id="siteSkills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -174,7 +174,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section class="portfolio"  id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -212,7 +212,7 @@
     <script>
         setTimeout(function(){
             siteWelcome.classList.remove('active');
-        },2000);
+        },1000);
         window.onscroll = function(){
             if(window.scrollY > 0){
                 navTopBar.classList.add('sticky')
@@ -220,18 +220,26 @@
                 navTopBar.classList.remove('sticky')
             }
         }
-        let liTags = document.getElementsByClassName('menuTigger');
+        let liTags = document.querySelectorAll("nav.menu > ul > li");
         for (let i = 0; i < liTags.length; i++) {
             liTags[i].onmouseenter = function(x){
-                let li = x.currentTarget;
-                let brother = li.getElementsByTagName('ul')[0];
-                brother.classList.add('active')
+                x.currentTarget.classList.add('active')
             }
             liTags[i].onmouseleave = function(x){
-                let li = x.currentTarget;
-                let brother = li.getElementsByTagName('ul')[0];
-                brother.classList.remove('active')
+                x.currentTarget.classList.remove('active')
+            } 
+        }
+        let aTags = document.querySelectorAll("nav.menu > ul > li > a")
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function(x){
+                x.preventDefault(); //阻止默认事件
+                let a = x.currentTarget;
+                let href = a.getAttribute("href");// id="siteSkills"
+                let element = document.querySelector(href);
+                let top = element.offsetTop;
+                window.scrollTo(0,top-80)
             }
+
             
         }
     </script>
