@@ -71,8 +71,8 @@
     <div class="banner">
         <div class="mask"></div>
     </div>
-    <main id="siteAbout">
-        <div class="userCard">
+    <main>
+        <div data-x class="userCard"  id="siteAbout">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <!-- <img src="./img/avatar.jpg" alt="头像" width="299" height="347"> -->
@@ -133,7 +133,7 @@
             技能：学习过Java的基础，前端开发，Python开发
         </p>
     </main>
-    <section class="skills" id="siteSkills">
+    <section data-x class="skills" id="siteSkills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -174,7 +174,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio"  id="siteWorks">
+    <section data-x class="portfolio"  id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -209,16 +209,47 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script>
         setTimeout(function(){
             siteWelcome.classList.remove('active');
-        },1000);
+        },500);
+        let specialTags = document.querySelectorAll("[data-x]");
+        let minIndex = 0;
+        for(var i = 1;i<specialTags.length;i++){
+            specialTags[i].classList.add('offset')
+        }
+        setTimeout(function(){
+            findClosest();
+            console.log(1)
+        },1000)
         window.onscroll = function(){
             if(window.scrollY > 0){
                 navTopBar.classList.add('sticky')
             }else{
                 navTopBar.classList.remove('sticky')
             }
+            findClosest()
+        }
+        function findClosest(){
+            let specialTags = document.querySelectorAll("[data-x]");
+            let minIndex = 0;
+            for(var i = 1;i<specialTags.length;i++){
+                if(Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)){
+                    minIndex = i;
+                }
+            }
+            // minIndex就是离窗口顶部最近的元素的索引
+            specialTags[minIndex].classList.remove('offset')
+            let id = specialTags[minIndex].id
+            let a = document.querySelector('a[href="#'+ id +'"]')
+            let li = a.parentNode;
+            let brotherAndMe = li.parentNode.children;
+            for(let i = 0;i<brotherAndMe.length;i++){
+                brotherAndMe[i].classList.remove('highlight')
+            }
+            li.classList.add('highlight')
         }
         let liTags = document.querySelectorAll("nav.menu > ul > li");
         for (let i = 0; i < liTags.length; i++) {
@@ -229,6 +260,16 @@
                 x.currentTarget.classList.remove('active')
             } 
         }
+
+        //tween.js
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+        
+
         let aTags = document.querySelectorAll("nav.menu > ul > li > a")
         for (let i = 0; i < aTags.length; i++) {
             aTags[i].onclick = function(x){
@@ -238,22 +279,20 @@
                 let element = document.querySelector(href);
                 let top = element.offsetTop;
 
-                let n = 25; //移动的次数
-                let duration = 500/n;   //多长时间移动一次
+
                 let currentTop = window.scrollY;
                 let targetTop = top -80;
-                let distance = (targetTop - currentTop)/n;
-                let i = 0;
-                var id = setInterval(()=>{
-                    if(i === 25){
-                        clearInterval(id)
-                        return    
-                    }
-                    i += 1;
-                    window.scrollTo(0,currentTop + distance*i);
-                    
-                },duration)
-
+                var s = targetTop - currentTop; //路程
+                var t = Math.abs((s/100) *300); //时间
+                if(t> 500){t = 500}
+                var coords = { y: currentTop }; //起始位置
+                var tween = new TWEEN.Tween(coords) 
+                    .to({ y: targetTop }, t) //结束位置 和 时间
+                    .easing(TWEEN.Easing.Quadratic.InOut)   //缓动类型
+                    .onUpdate(function() { 
+                        window.scrollTo(0,coords.y);    //滑动到指定模块
+                    })
+                    .start(); //开始缓动
             }
 
             
