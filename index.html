@@ -169,20 +169,37 @@
             <div class="swiper-button-next"></div>
         </div>
     </section>
+    <section class="message">
+        <!-- 可以模仿知乎的留言和私信,还可以实现分页 -->
+        <h2>留言</h2>
+        <ol id="messageList"></ol>
+        <form id="postMessageForm">
+            <div class="container">
+                <div>
+                    <label for="">姓名</label>
+                </div>
+                <input type="text" name="name">
+                <div>
+                    <label for="">留言内容</label>
+                </div>
+                <!-- <input type="text" name="content"> -->
+                <textarea name="content" placeholder="请输入你的留言内容"></textarea>
+                <input type="submit" value="提交">
+            </div>
+        </form>
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
     <script src="./js/init-swiper.js"></script>
     <script src="./js/auto-slide-up.js"></script>
     <script src="./js/smoothly-navigation.js"></script>
     <script src="./js/sticky-topbar.js"></script>
+    <script src="./js/message.js"></script>
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             siteWelcome.classList.remove('active');
         }, 500);
-        
-        
-
-        
     </script>
 </body>
 

@@ -1,5 +1,4 @@
 !function(){
-    console.log(1)
     let specialTags = document.querySelectorAll("[data-x]");
     for (var i = 1; i < specialTags.length; i++) {
         specialTags[i].classList.add('offset')
