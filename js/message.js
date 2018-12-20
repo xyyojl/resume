@@ -5,10 +5,7 @@
         init: function () {
             var APP_ID = 'QQ1Nqrp88ugKFRtId9KknVKl-gzGzoHsz';
             var APP_KEY = 'Jgi6JnSQIp2aixTwjHEi12o1';
-            AV.init({
-                appId: APP_ID,
-                appKey: APP_KEY
-            });
+            AV.init({appId: APP_ID,appKey: APP_KEY});
         },
         fetch: function () {
             var query = new AV.Query('Message');
@@ -41,7 +38,7 @@
         },
         loadMessages: function () {
             this.model.fetch().then(
-                (message) => {
+                (messages) => {
                     //messages 是一个数组
                     let array = messages.map(item => item.attributes)
                     array.forEach((item) => {
