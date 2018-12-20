@@ -60,15 +60,21 @@
             let myForm = this.form
             let content = myForm.querySelector('textarea[name=content]').value
             let name = myForm.querySelector('input[name=name]').value
-            this.model.save(name,content).then(function (object) {
-                // window.location.reload()
-                let li = document.createElement('li')
-                li.innerText = `${object.attributes.name}：${object.attributes.content}`
-                let messageList = document.querySelector('#messageList')
-                messageList.appendChild(li)
-                myForm.querySelector('textarea[name=content]').value = ''
-                myForm.querySelector('input[name=name]').value = ''
-            })
+            if(content !== '' && name !== ''){
+                console.log(1)
+                this.model.save(name,content).then(function (object) {
+                    // window.location.reload()
+                    let li = document.createElement('li')
+                    li.innerText = `${object.attributes.name}：${object.attributes.content}`
+                    let messageList = document.querySelector('#messageList')
+                    messageList.appendChild(li)
+                    myForm.querySelector('textarea[name=content]').value = ''
+                    myForm.querySelector('input[name=name]').value = ''
+                })
+            }else{
+                alert("想要留下的信息，请记得输入姓名和留言内容，谢谢")
+            }
+            
         }
     }
     controller.init(view,model)
